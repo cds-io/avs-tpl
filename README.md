@@ -91,6 +91,54 @@ Open a separate terminal window #3, execute the following commands
 npm run start:traffic
 ```
 
+## Using Zellij for Demo Orchestration
+
+We've recently added support for [Zellij](https://zellij.dev/), a terminal workspace with batteries included, to simplify the process of running the Hello World AVS demo.
+
+### What is Zellij?
+
+Zellij is a terminal multiplexer (like tmux or screen) that allows you to easily manage multiple terminal panes within a single window. It provides a user-friendly interface for creating, arranging, and interacting with multiple terminal sessions.
+
+### Installing Zellij
+
+#### On Linux:
+
+```console
+curl -L https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz | tar -xzf - -C ~/.local/bin
+```
+
+#### On macOS:
+
+Using Homebrew:
+```console
+brew install zellij
+```
+
+For more installation options, visit the [Zellij installation guide](https://zellij.dev/documentation/installation.html).
+
+### Running the Demo with Zellij
+
+To start the demo using Zellij:
+
+```console
+npm ci
+npm run zellij:demo
+```
+
+This command will open a new Zellij session with three panes: Anvil, Operator, and Tasks, automatically running the necessary commands in each pane. **Note: the first time you run this, it will take a while to build the contracts and start the demo.**
+
+![Zellij Demo Screenshot](./assets/zellij-demo-screenshot.png)
+
+### How to use Zellij
+- **Scrollback**: Scrollback is enabled by default in each pane. You can scroll through the pane's history by clicking and dragging with your mouse.
+- **Scrollback editing**: Press `Ctrl-s e` to edit the scrollback buffer with your default editor, specified in `$EDITOR`. This is useful for capturing output to a file, or the clipboard.
+- **Create a new pane**: Press `Ctrl+p n` to create a new pane.
+- **Close panes**: Press `Ctrl+c Ctrl+c` to close the current pane.
+- **Resize panes**: You can resize the panes by dragging the border between them.
+- **Switch panes**: Use `Alt+Arrow` or `Alt+hjkl` to navigate between panes.
+- **Detach from session**: Press `Ctrl+d` again to detach from the current session.
+- **Reattach to session**: Use `zellij attach` to reattach to a previously detached session.
+
 ### Help and Support
 
 For help and support deploying and modifying this repo for your AVS, please:
@@ -186,3 +234,4 @@ make deploy-helloworld-contracts
 ```
 cargo test --workspace
 ```
+
